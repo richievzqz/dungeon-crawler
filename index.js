@@ -1,14 +1,14 @@
 const fs = require('fs'); // This is Node's native file system module.
 const Discord = require('discord.js');
 const { prefix, token } = require ('./config.json');
-const { timeStamp } = require('console');
+//const { timeStamp } = require('console');
 
 const client = new Discord.Client();
 
 // Collections
 client.commands = new Discord.Collection();
 const cooldowns = new Discord.Collection();
-
+//fs is nodes native filing system
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
@@ -22,7 +22,7 @@ client.on('message', message => {
 	if(!message.content.startsWith(prefix) || message.author.bot) return;
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
-
+	
 	if(!client.commands.has(commandName)) return;
 
 	//find the command from collection
@@ -53,7 +53,8 @@ client.on('message', message => {
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
-
+	// try to execute the command along with its arguments
+	// arguments are split up into an String[]
 	try {
 		command.execute(message, args);
 	} catch (error) {

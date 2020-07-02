@@ -11,6 +11,7 @@ module.exports = {
             embed.addField(`${message.client.commands.get(command).name}`,
              `${message.client.commands.get(command).description}`);
         }
-        message.channel.send(embed);
+        message.author.send(embed);
+        //message.channel.send(embed);
     }
 };
