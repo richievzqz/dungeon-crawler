@@ -1,14 +1,15 @@
-const fs = require('fs'); // This is Node's native file system module.
+// This is Node's native file system module.
+const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require ('./config.json');
-//const { timeStamp } = require('console');
+// const { timeStamp } = require('console');
 
 const client = new Discord.Client();
 
 // Collections
 client.commands = new Discord.Collection();
 const cooldowns = new Discord.Collection();
-//fs is nodes native filing system
+// fs is nodes native filing system
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
@@ -18,17 +19,17 @@ for (const file of commandFiles) {
 /*
 	Primary message Handler
 */
-client.on('message', message => {
+client.on('message', async message => {
 	if(!message.content.startsWith(prefix) || message.author.bot) return;
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
-	
+
 	if(!client.commands.has(commandName)) return;
 
-	//find the command from collection
+	// find the command from collection
 	const command = client.commands.get(commandName);
 
-	/* 
+	/*
 	Check for cooldowns and set them 
 	*/
 	// if command is not in cooldowns, add it
