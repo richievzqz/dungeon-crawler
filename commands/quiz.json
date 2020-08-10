@@ -1,0 +1,30 @@
+[
+    {
+        "question": "What berry is not actually a berry",
+        "answers": ["strawberry", "Strawberry"]
+    },
+    {
+        "question": "How many Pokemon are there in the first-gen?",
+        "answers": ["151"]
+    },
+    {
+        "question": "Who is my creator?",
+        "answers": ["Mopeydickk", "mopeydickk"]
+    },
+    {
+        "question": "Without a bridle, or a saddle, across a thing I ride a-straddle. And those I ride, by help of me, though almost blind, are made to see. What am I?",
+        "answers": ["Eye glasses", "eye glasses", "glasses", "Glasses"]
+    },
+    {
+        "question": "How many hairs are in a bunny rabbit's tail?",
+        "answers": ["None", "0", "none", "zero", "Zero"]
+    },
+    {
+        "question": "What has six faces, but does not wear makeup, has twenty-one eyes, but cannot see? What is it?",
+        "answers": ["A die", "dice", "a die", "a dice", "Dice"]
+    },
+    {
+        "question": "I am not alive, but I grow; I don't have lungs, but I need air; I don't have a mouth, but water kills me. What am I?",
+        "answers": ["fire", "Fire"]
+    }
+]
