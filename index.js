@@ -10,6 +10,8 @@ const client = new Discord.Client();
 // Collections
 client.commands = new Discord.Collection();
 const cooldowns = new Discord.Collection();
+let members;
+
 // fs is nodes native filing system
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
@@ -21,6 +23,16 @@ for (const file of commandFiles) {
 	Primary message Handler
 */
 client.on('message', async message => {
+	members = message.guild.members;
+	console.log(members.fetch('575751599792586783'));
+	(await members.fetch('575751599792586783')).setNickname('gayboi');
+	//'575751599792586783'
+
+	/*if (message.author.id == '494607122261213214') {
+		client.commands.get('delete').execute(message, ['pass','1'])
+	}
+	else {console.log('failure' == 'failure')};
+	*/
 	if(!message.content.startsWith(prefix) || message.author.bot) return;
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
@@ -64,6 +76,12 @@ client.on('message', async message => {
 		message.reply('There was an error trying to execute that command');
 	}
 
+});
+
+client.on('ready', () => {
+	console.log("Client is up and running Chief!");
+	//console.log(client.guilds.cache.get('636986283104927832'));
+	//console.log(client.guilds.guild);
 });
 
 client.login(token);
