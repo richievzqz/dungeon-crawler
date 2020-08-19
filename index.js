@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const Discord = require('discord.js');
 const { prefix, token } = require ('./config.json');
+const { default: Collection } = require('@discordjs/collection');
 // const { timeStamp } = require('console');
 
 const client = new Discord.Client();
@@ -10,6 +11,8 @@ const client = new Discord.Client();
 // Collections
 client.commands = new Discord.Collection();
 const cooldowns = new Discord.Collection();
+const currentGames = new Discord.Collection();
+
 let members;
 
 // fs is nodes native filing system
@@ -25,19 +28,25 @@ for (const file of commandFiles) {
 client.on('message', async message => {
 	members = message.guild.members;
 	console.log(members.fetch('575751599792586783'));
-	(await members.fetch('575751599792586783')).setNickname('gayboi');
+	(await members.fetch('575751599792586783')).setNickname('Rebecca');
 	//'575751599792586783'
 
-	/*if (message.author.id == '494607122261213214') {
-		client.commands.get('delete').execute(message, ['pass','1'])
-	}
-	else {console.log('failure' == 'failure')};
-	*/
+
+	// If message is from bot or doesn't start with prefix
 	if(!message.content.startsWith(prefix) || message.author.bot) return;
+
+
+	// take off prefix and then put slice into array
+	// then take off the first element of array which should be the command
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
 	if(!client.commands.has(commandName)) return;
+
+	if(commandName == 'newgame' && !currentGames.has(message.channel)) {
+		currentGames.set(message.channel, 'area1')
+		console.log(currentGames.entries()
+	}
 
 	// find the command from collection
 	const command = client.commands.get(commandName);
